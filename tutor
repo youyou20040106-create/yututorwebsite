@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>游子逸 | 數理資優專業家教</title>
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --dark: #0f172a;
+      --slate: #475569;
+      --light-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --accent: #f59e0b;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--slate);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0 3.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      color: var(--dark);
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--slate);
+      max-width: 700px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .section-title p {
+      color: var(--slate);
+      margin-top: 0.5rem;
+    }
+
+    /* Cards Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .card-header h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* Stats Grid */
+    .scores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .score-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .score-badge {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+    }
+
+    /* Timeline / Track Record */
+    .track-record-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .track-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--light-bg);
+      border-left: 4px solid var(--primary);
+    }
+
+    .highlight-pill {
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    /* Pricing Table */
+    .pricing-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .price-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--primary);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+    }
+
+    .featured-label {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.8rem;
+      border-radius: 9999px;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 1rem 0;
+    }
+
+    .price small {
+      font-size: 0.9rem;
+      color: var(--slate);
+      font-weight: 400;
+    }
+
+    .notes-box {
+      margin-top: 1.5rem;
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #854d0e;
+    }
+
+    /* Contact Section */
+    .contact-box {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-radius: 16px;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--slate);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero { padding: 3rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-brand">
+      <i data-lucide="graduation-cap"></i>
+      <span>游子逸 家教履歷</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">關於老師</a></li>
+      <li><a href="#achievements">教學成果</a></li>
+      <li><a href="#subjects">授課科目</a></li>
+      <li><a href="#pricing">課堂費用</a></li>
+      <li><a href="#method">教學理念</a></li>
+      <li><a href="#contact">聯絡試教</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="badge">
+        <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+        台北 / 新北 / 線上家教開放預約中
+      </div>
+      <h1>
+        建立解題清晰思路，<br>
+        陪學生突破瓶頸、穩定高分！
+      </h1>
+      <p>
+        我是 <strong>游子逸</strong>，畢業於北市私立景文高中數理資優班、和平高中，現就讀淡江大學電機工程學系資訊組。具備國中科學奧林匹亞培訓及連鎖補習班個別指導經驗，專注於引導觀念理解與實戰提分。
+      </p>
+
+      <div class="tags">
+        <div class="tag-item"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> 台北市：信義區、文山區為佳</div>
+        <div class="tag-item"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> 新北市：新店區為佳</div>
+        <div class="tag-item"><i data-lucide="video" style="width: 14px; height: 14px;"></i> 支援全台線上遠距授課</div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          <i data-lucide="calendar"></i>
+          立即預約試教（折抵100元）
+        </a>
+        <a href="#achievements" class="btn btn-outline">
+          <i data-lucide="trending-up"></i>
+          查看學生進步案例
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Test Scores -->
+  <section id="about" class="container">
+    <div class="section-title">
+      <h2><i data-lucide="award" style="color: var(--accent);"></i> 學歷背景與大考頂尖戰績</h2>
+      <p>扎實數理背景，掌握各類大考的核心考點與高分思維</p>
+    </div>
+
+    <div class="scores-grid">
+      <div class="score-card">
+        <div class="score-badge">13 級</div>
+        <div>
+          <strong>111 學測 數學</strong>
+          <p style="font-size: 0.85rem; color: var(--slate);">全國頂標</p>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="score-badge">13 級</div>
+        <div>
+          <strong>111 學測 社會</strong>
+          <p style="font-size: 0.85rem; color: var(--slate);">全國頂標</p>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="score-badge">11 級</div>
+        <div>
+          <strong>111 學測 自然</strong>
+          <p style="font-size: 0.85rem; color: var(--slate);">全國前標</p>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="score-badge">A++</div>
+        <div>
+          <strong>108 國中會考</strong>
+          <p style="font-size: 0.85rem; color: var(--slate);">數學 A++ / 社會 A++ / 自然 A</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+      <div class="card-header">
+        <div class="icon-box"><i data-lucide="book-open"></i></div>
+        <h3>求學歷程</h3>
+      </div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; color: var(--slate);">
+        <li>📍 <strong>淡江大學</strong> 電機工程學系 資訊組</li>
+        <li>📍 <strong>台北市立和平高中</strong></li>
+        <li>📍 <strong>台北市私立景文高中國中部</strong> 數理資優班</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Teaching Experience & Track Record -->
+  <section id="achievements" style="background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-title">
+        <h2><i data-lucide="check-circle-2" style="color: var(--success);"></i> 教學經歷與真實進步案例</h2>
+        <p>個別化針對弱點對症下藥，讓學生在短期段考與長期升學大考都能看到顯著躍升</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- 機構與特訓經驗 -->
+        <div class="card">
+          <div class="card-header">
+            <div class="icon-box"><i data-lucide="users"></i></div>
+            <h3>補習班個別指導師資</h3>
+          </div>
+          <ul style="list-style: disc; padding-left: 1.2rem; color: var(--slate); display: flex; flex-direction: column; gap: 0.6rem;">
+            <li><strong>淡水明光義塾</strong> 一對三高中數學講師</li>
+            <li><strong>台灣拓人竹圍教室</strong> 一對二高中物理講師 / 國中數學解題老師</li>
+            <li><strong>國中科學奧林匹亞</strong> (物理部分) 專題培訓家教</li>
+          </ul>
+        </div>
+
+        <!-- 進步案例 -->
+        <div class="card" style="grid-column: span 2;">
+          <div class="card-header">
+            <div class="icon-box"><i data-lucide="trending-up"></i></div>
+            <h3>代表性家教輔導實績</h3>
+          </div>
+          <ul class="track-record-list">
+            <li class="track-item">
+              <i data-lucide="chevron-right" style="color: var(--primary);"></i>
+              <div>
+                <strong>中正高中 數B 學生</strong>
+                <p style="font-size: 0.85rem; color: var(--slate);">重新梳理公式幾何盲點，強化高頻題型辨識</p>
+              </div>
+              <span class="highlight-pill">段考大幅進步 40 分</span>
+            </li>
+            <li class="track-item">
+              <i data-lucide="chevron-right" style="color: var(--primary);"></i>
+              <div>
+                <strong>中正高中 數乙 學生</strong>
+                <p style="font-size: 0.85rem; color: var(--slate);">系統化考古題拆解，重拾大考應試信心</p>
+              </div>
+              <span class="highlight-pill">學測 流標躍升至均標</span>
+            </li>
+            <li class="track-item">
+              <i data-lucide="chevron-right" style="color: var(--primary);"></i>
+              <div>
+                <strong>竹圍高中 高一數學 學生</strong>
+                <p style="font-size: 0.85rem; color: var(--slate);">銜接高一抽象函數與代數觀念</p>
+              </div>
+              <span class="highlight-pill">段考顯著進步 30 分</span>
+            </li>
+            <li class="track-item">
+              <i data-lucide="chevron-right" style="color: var(--primary);"></i>
+              <div>
+                <strong>私校與明星國高中長年指導</strong>
+                <p style="font-size: 0.85rem; color: var(--slate);">康橋國中理化 / 康橋高中物理 / 淡水國中理化 / 淡江高中學測數B</p>
+              </div>
+              <span class="highlight-pill" style="background: #e0f2fe; color: #0369a1;">豐富私校輔導經驗</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subjects & Fee Table -->
+  <section id="subjects" class="container">
+    <div class="section-title">
+      <h2><i data-lucide="layers" style="color: var(--primary);"></i> 授課科目與鐘點費率</h2>
+      <p>收費透明可議，首堂試教享現金減免優惠</p>
+    </div>
+
+    <div class="pricing-table" id="pricing">
+      <!-- 國小 -->
+      <div class="price-card">
+        <h3>國小學程</h3>
+        <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.4rem;">啟發數理邏輯與良好讀書習慣</p>
+        <div class="price">$500+ <small>/ 小時</small></div>
+        <ul style="list-style: none; text-align: left; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.95rem;">
+          <li>✓ 國小全科伴讀 / 課後輔導</li>
+          <li>✓ 奧林匹克數學（奧數）</li>
+          <li>✓ 卓越盃全國競賽備賽輔導</li>
+        </ul>
+      </div>
+
+      <!-- 國中 -->
+      <div class="price-card featured">
+        <div class="featured-label">家長熱門推薦</div>
+        <h3>國中學程</h3>
+        <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.4rem;">奠定扎實理化與數學基礎，迎戰會考</p>
+        <div class="price">$600+ <small>/ 小時</small></div>
+        <ul style="list-style: none; text-align: left; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.95rem;">
+          <li>✓ 國中數學、自然科（理化/生物/地科）</li>
+          <li>✓ 國中社會科重點歸納</li>
+          <li>✓ 國中科學奧林匹亞競賽指導</li>
+        </ul>
+      </div>
+
+      <!-- 高中 & 創客 -->
+      <div class="price-card">
+        <h3>高中 / 專案實作</h3>
+        <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.4rem;">學測分科頂標思維與大學跨領域銜接</p>
+        <div class="price">$800+ <small>/ 小時</small></div>
+        <ul style="list-style: none; text-align: left; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.95rem;">
+          <li>✓ 高中數學 (數A / 數B / 數甲 / 數乙)</li>
+          <li>✓ 高中物理、社會科</li>
+          <li>✓ 基礎 Arduino 軟硬體整合操作指導</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes-box">
+      <strong>📌 課堂規範與備註：</strong>
+      <ul style="margin-top: 0.4rem; padding-left: 1.2rem;">
+        <li><strong>試教優惠：</strong>提供首次試教服務，現折減免 <strong>100 元</strong>。</li>
+        <li><strong>其他費用：</strong>若需特製備課補充教材、跨區車馬費或特定咖啡廳低消另計。</li>
+        <li><strong>費用彈性：</strong>鐘點費皆可視堂數與授課時數個別洽談討論。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Philosophy & Methodology -->
+  <section id="method" style="background: white; border-top: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-title">
+        <h2><i data-lucide="compass" style="color: var(--primary);"></i> 教學理念與核心方法</h2>
+        <p>不只是死背套公式，而是教給學生受用一生的自主學習與解題能力</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 2rem; border-left: 4px solid var(--accent); background: #fffdf5;">
+        <h3 style="margin-bottom: 0.5rem; color: #92400e;">💡 核心理念：教給思路，啟發自主自律</h3>
+        <p style="color: #78350f; font-size: 1.05rem;">
+          「我能為學生建立清晰的解題思路，學習多元的解題技巧，並協助破解各種常考與難題。然而<strong>『師父領進門，修行在個人』</strong>，真正學好學科絕不單靠每週一到兩小時的課堂，更關鍵的是課後有意識的複習與反覆精熟！」
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="icon-box"><i data-lucide="check-square"></i></div>
+            <h3>1. 課內扎實基礎</h3>
+          </div>
+          <p style="color: var(--slate); font-size: 0.95rem;">
+            以學校既有課程為骨幹，落實理解校內教材。優先協助解決校內作業疑問，並針對考卷錯題進行地毯式檢討，不留知識盲點。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="icon-box"><i data-lucide="sliders"></i></div>
+            <h3>2. 靈活進階調整</h3>
+          </div>
+          <p style="color: var(--slate); font-size: 0.95rem;">
+            根據學生的即時吸收進度彈性調控。在基礎穩固後，主動提供課外進階與加深加廣的補充教材，強化思考深度與大考鑑別力。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="icon-box"><i data-lucide="user-check"></i></div>
+            <h3>3. 因材施教同理</h3>
+          </div>
+          <p style="color: var(--slate); font-size: 0.95rem;">
+            每位學生的理解盲點各不相同。我會站在學生視角傾聽卡關點，精準調配學習步調，讓每一次上課都能換來最大的學習效益。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container">
+    <div class="contact-box">
+      <h2>歡迎預約試教與課程諮詢</h2>
+      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">
+        無論是段考急救、會考/學測長期衝刺，或數理邏輯啟蒙，都歡迎直接來訊討論上課時間與規劃！
+      </p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <i data-lucide="message-circle" style="color: #22c55e;"></i>
+          <span><strong>Line ID：</strong>ianyu111111111111111</span>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="map-pin" style="color: #60a5fa;"></i>
+          <span><strong>實體地點：</strong>信義區 / 文山區 / 新店區（或線上）</span>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="https://line.me/ti/p/~ianyu111111111111111" target="_blank" class="btn" style="background: #06c755; color: white;">
+          <i data-lucide="external-link"></i>
+          直接開啟 LINE 加好友
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 游子逸 家教個人網站. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 初始化 Lucide 圖標
+    lucide.createIcons();
+  </script>
+</body>
+</html>
