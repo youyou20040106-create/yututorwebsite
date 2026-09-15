@@ -88,16 +88,22 @@
 
     /* Hero Section */
     .hero {
-      padding: 5rem 0 3.5rem;
+      padding: 4.5rem 0 3.5rem;
       background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
       border-bottom: 1px solid var(--border);
     }
 
     .hero-content {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 320px;
     }
 
     .badge {
@@ -113,10 +119,11 @@
     }
 
     .hero h1 {
-      font-size: 2.8rem;
-      line-height: 1.2;
+      font-size: 2.5rem;
+      line-height: 1.25;
       color: var(--dark);
       font-weight: 800;
+      margin-top: 1rem;
     }
 
     .hero h1 span {
@@ -124,35 +131,52 @@
     }
 
     .hero p {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--slate);
-      max-width: 700px;
+      margin-top: 1rem;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
     }
 
     .tag-item {
       background: #fff;
       border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem;
+      padding: 0.35rem 0.75rem;
       border-radius: 6px;
       font-size: 0.85rem;
       color: var(--slate);
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.35rem;
     }
 
     .hero-cta {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-photo-wrapper {
+      flex: 0 0 320px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: 320px;
+      height: 380px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.12);
+      border: 4px solid #ffffff;
     }
 
     .btn {
@@ -196,7 +220,7 @@
 
     .section-title {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     .section-title h2 {
@@ -253,11 +277,11 @@
     }
 
     .card-header h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
     }
 
-    /* Stats Grid */
+    /* Scores Grid */
     .scores-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -284,7 +308,7 @@
       border-radius: 8px;
     }
 
-    /* Timeline / Track Record */
+    /* Track Record */
     .track-record-list {
       list-style: none;
       display: flex;
@@ -311,6 +335,28 @@
       border-radius: 4px;
       margin-left: auto;
       white-space: nowrap;
+    }
+
+    /* Feedback Cards */
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feedback-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .feedback-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
     }
 
     /* Pricing Table */
@@ -365,9 +411,22 @@
       background: #fefce8;
       border: 1px solid #fef08a;
       border-radius: 8px;
-      padding: 1rem;
+      padding: 1.2rem;
       font-size: 0.9rem;
       color: #854d0e;
+    }
+
+    /* Materials Showcase */
+    .material-card {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
     }
 
     /* Contact Section */
@@ -410,8 +469,10 @@
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero h1 { font-size: 2.2rem; }
+      .hero h1 { font-size: 2.1rem; }
       .hero { padding: 3rem 0; }
+      .hero-photo-wrapper { flex: 0 0 100%; }
+      .hero-photo { max-width: 260px; height: 320px; }
     }
   </style>
 </head>
@@ -426,6 +487,7 @@
     <ul class="nav-links">
       <li><a href="#about">關於老師</a></li>
       <li><a href="#achievements">教學成果</a></li>
+      <li><a href="#feedback">家長反饋</a></li>
       <li><a href="#subjects">授課科目</a></li>
       <li><a href="#pricing">課堂費用</a></li>
       <li><a href="#method">教學理念</a></li>
@@ -433,41 +495,48 @@
     </ul>
   </nav>
 
-  <!-- Hero Banner -->
+  <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-content">
-      <div class="badge">
-        <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
-        台北 / 新北 / 線上家教開放預約中
-      </div>
-      <h1>
-        建立解題清晰思路，<br>
-        陪學生突破瓶頸、穩定高分！
-      </h1>
-      <p>
-        我是 <strong>游子逸</strong>，畢業於北市私立景文高中數理資優班、和平高中，現就讀淡江大學電機工程學系資訊組。具備國中科學奧林匹亞培訓及連鎖補習班個別指導經驗，專注於引導觀念理解與實戰提分。
-      </p>
+      <div class="hero-text">
+        <div class="badge">
+          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+          台北 / 新北 / 線上家教開放預約中
+        </div>
+        <h1>
+          建立解題清晰思路，<br>
+          陪學生突破瓶頸、穩定高分！
+        </h1>
+        <p>
+          我是 <strong>游子逸</strong>，畢業於北市私立景文高中數理資優班、和平高中，現就讀淡江大學電機工程學系資訊組。具備科學奧林匹亞培訓與連鎖補習班個別指導經驗，專注於引導觀念理解與實戰提分。
+        </p>
 
-      <div class="tags">
-        <div class="tag-item"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> 台北市：信義區、文山區為佳</div>
-        <div class="tag-item"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> 新北市：新店區為佳</div>
-        <div class="tag-item"><i data-lucide="video" style="width: 14px; height: 14px;"></i> 支援全台線上遠距授課</div>
+        <div class="tags">
+          <div class="tag-item"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> 台北市：信義區、文山區為佳</div>
+          <div class="tag-item"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> 新北市：新店區為佳</div>
+          <div class="tag-item"><i data-lucide="video" style="width: 14px; height: 14px;"></i> 支援全台線上遠距授課</div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <i data-lucide="calendar"></i>
+            立即預約試教（折抵100元）
+          </a>
+          <a href="#achievements" class="btn btn-outline">
+            <i data-lucide="trending-up"></i>
+            查看學生進步案例
+          </a>
+        </div>
       </div>
 
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">
-          <i data-lucide="calendar"></i>
-          立即預約試教（折抵100元）
-        </a>
-        <a href="#achievements" class="btn btn-outline">
-          <i data-lucide="trending-up"></i>
-          查看學生進步案例
-        </a>
+      <!-- 個人生活/教學照 -->
+      <div class="hero-photo-wrapper">
+        <img src="./profile.jpg" alt="游子逸 老師照片" class="hero-photo" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80'">
       </div>
     </div>
   </section>
 
-  <!-- About & Test Scores -->
+  <!-- About & Scores -->
   <section id="about" class="container">
     <div class="section-title">
       <h2><i data-lucide="award" style="color: var(--accent);"></i> 學歷背景與大考頂尖戰績</h2>
@@ -505,7 +574,7 @@
       </div>
     </div>
 
-    <div class="card" style="margin-top: 1rem;">
+    <div class="card">
       <div class="card-header">
         <div class="icon-box"><i data-lucide="book-open"></i></div>
         <h3>求學歷程</h3>
@@ -518,16 +587,15 @@
     </div>
   </section>
 
-  <!-- Teaching Experience & Track Record -->
+  <!-- Teaching Experience -->
   <section id="achievements" style="background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="container">
       <div class="section-title">
-        <h2><i data-lucide="check-circle-2" style="color: var(--success);"></i> 教學經歷與真實進步案例</h2>
+        <h2><i data-lucide="check-circle-2" style="color: var(--success);"></i> 教學經歷與輔導實績</h2>
         <p>個別化針對弱點對症下藥，讓學生在短期段考與長期升學大考都能看到顯著躍升</p>
       </div>
 
       <div class="grid-3">
-        <!-- 機構與特訓經驗 -->
         <div class="card">
           <div class="card-header">
             <div class="icon-box"><i data-lucide="users"></i></div>
@@ -540,7 +608,6 @@
           </ul>
         </div>
 
-        <!-- 進步案例 -->
         <div class="card" style="grid-column: span 2;">
           <div class="card-header">
             <div class="icon-box"><i data-lucide="trending-up"></i></div>
@@ -559,7 +626,7 @@
               <i data-lucide="chevron-right" style="color: var(--primary);"></i>
               <div>
                 <strong>中正高中 數乙 學生</strong>
-                <p style="font-size: 0.85rem; color: var(--slate);">系統化考古題拆解，重拾大考應試信心</p>
+                <p style="font-size: 0.85rem; color: var(--slate);">系統化拆解歷屆大考題型，重拾應試信心</p>
               </div>
               <span class="highlight-pill">學測 流標躍升至均標</span>
             </li>
@@ -574,18 +641,43 @@
             <li class="track-item">
               <i data-lucide="chevron-right" style="color: var(--primary);"></i>
               <div>
-                <strong>私校與明星國高中長年指導</strong>
+                <strong>私校與公立升學輔導</strong>
                 <p style="font-size: 0.85rem; color: var(--slate);">康橋國中理化 / 康橋高中物理 / 淡水國中理化 / 淡江高中學測數B</p>
               </div>
-              <span class="highlight-pill" style="background: #e0f2fe; color: #0369a1;">豐富私校輔導經驗</span>
+              <span class="highlight-pill" style="background: #e0f2fe; color: #0369a1;">多元升學輔導經驗</span>
             </li>
           </ul>
         </div>
       </div>
+
+      <!-- 家長真實對話截圖區 -->
+      <div id="feedback" style="margin-top: 4rem;">
+        <div class="section-title">
+          <h2><i data-lucide="message-square" style="color: var(--primary);"></i> 家長真實反饋見證</h2>
+          <p>成效有目共睹，陪伴孩子從解題卡關到重拾信心</p>
+        </div>
+
+        <div class="feedback-grid">
+          <div class="feedback-card">
+            <img src="./review1.jpg" alt="學測數B均標家長感謝" class="feedback-img">
+            <p style="margin-top: 0.8rem; font-weight: 600; font-size: 0.95rem; color: #16a34a;">
+              🎉 學測數B突破模考瓶頸，順利達到均標！
+            </p>
+          </div>
+
+          <div class="feedback-card">
+            <img src="./review2.jpg" alt="妹妹解題變多反饋" class="feedback-img">
+            <p style="margin-top: 0.8rem; font-weight: 600; font-size: 0.95rem; color: #2563eb;">
+              📈 解題思路通順，會寫的題目大幅增加！
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- Subjects & Fee Table -->
+  <!-- Subjects & Pricing -->
   <section id="subjects" class="container">
     <div class="section-title">
       <h2><i data-lucide="layers" style="color: var(--primary);"></i> 授課科目與鐘點費率</h2>
@@ -641,12 +733,12 @@
     </div>
   </section>
 
-  <!-- Philosophy & Methodology -->
+  <!-- Philosophy & Materials -->
   <section id="method" style="background: white; border-top: 1px solid var(--border);">
     <div class="container">
       <div class="section-title">
         <h2><i data-lucide="compass" style="color: var(--primary);"></i> 教學理念與核心方法</h2>
-        <p>不只是死背套公式，而是教給學生受用一生的自主學習與解題能力</p>
+        <p>不只是死背公式，而是教給學生受用一生的自主學習與解題能力</p>
       </div>
 
       <div class="card" style="margin-bottom: 2rem; border-left: 4px solid var(--accent); background: #fffdf5;">
@@ -687,6 +779,22 @@
           </p>
         </div>
       </div>
+
+      <!-- 自編補充教材展示卡片 -->
+      <div class="material-card">
+        <div style="flex: 1; min-width: 280px;">
+          <div class="badge" style="background: #fef3c7; color: #92400e; margin-bottom: 0.8rem;">自編專屬講義</div>
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">系統化統整觀念，精準破解核心題型</h3>
+          <p style="color: var(--slate); font-size: 0.95rem; line-height: 1.8;">
+            除了鞏固課內進度，針對重點章節（如三角函數、弧度量、圓心角等抽象概念）特別製作自編補充講義[cite: 1]。以圖解建立清晰幾何直覺，並配合經典題型由淺入深拆解步驟，幫助學生徹底擺脫死記硬背[cite: 1]！
+          </p>
+        </div>
+        <div style="flex: 0 0 280px; max-width: 100%; text-align: center;">
+          <img src="./materials.jpg" alt="自編三角函數講義預覽" style="width: 100%; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 8px 18px rgba(0,0,0,0.08);">
+          <span style="font-size: 0.8rem; color: var(--slate); margin-top: 0.4rem; display: block;">▲ 高二專用自編數學講義示例[cite: 1]</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -726,7 +834,6 @@
   </footer>
 
   <script>
-    // 初始化 Lucide 圖標
     lucide.createIcons();
   </script>
 </body>
